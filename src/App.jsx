@@ -1,15 +1,8 @@
-import { Navbar } from "./Components/Navbar/Navbar";
-import { Login } from "./Pages/Login";
+import React from "react";
+import { AppRoutes } from "./Routes/routes";
 
 function App() {
-  return (
-    <>
-      <div className="h-screen">
-        <Navbar />
-        <Login />
-      </div>
-    </>
-  );
+  return <AppRoutes />;
 }
 
 export default App;

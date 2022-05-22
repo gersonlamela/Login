@@ -7,7 +7,7 @@ export function MainLeft() {
       <div className="hidden lg:flex flex-col gap-14">
         <div className="flex flex-col">
           <h1 className="text-dark dark:text-light text-[3.125rem] font-semibold">
-            Sign in to
+            Sign Up to
           </h1>
           <h2 className="text-dark dark:text-light text-4xl font-medium">
             Lorem Ipsum is simply
@@ -17,12 +17,12 @@ export function MainLeft() {
           <div className="flex flex-row gap-2">
             <div className="flex flex-col">
               <p className="text-base font-normal">
-                If you don’t have an account register
+                If you already have an account
               </p>
               <p className="text-base font-medium">
-                You can{" "}
+                You can
                 <span className="text-blue">
-                  <a href="/register">Register here!</a>
+                  <a href="../">Login here!</a>
                 </span>
               </p>
             </div>

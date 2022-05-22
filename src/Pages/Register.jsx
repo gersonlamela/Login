@@ -1,9 +1,9 @@
 import React from "react";
-import { MainLeft } from "../Components/MainLogin/MainLeft/MainLeft";
-import { MainRight } from "../Components/MainLogin/MainRight/MainRight";
+import { MainLeft } from "../Components/MainRegister/MainLeft/MainLeft";
+import { MainRight } from "../Components/MainRegister/MainRight/MainRight";
 import { Navbar } from "../Components/Navbar/Navbar";
 
-export function Login() {
+export function Register() {
   return (
     <>
       <Navbar />
