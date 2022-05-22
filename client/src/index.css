@@ -10,6 +10,10 @@
     @apply w-full h-[60px] p-[30px] bg-purpple bg-opacity-30 text-purpple placeholder-purpple rounded;
   }
 
+  .text.form {
+    @apply flex items-center justify-center rounded  font-medium text-base text-dark dark:text-light;
+  }
+
   .tooglePassword {
     @apply absolute text-purpple font-bold opacity-100 mr-[30px];
   }

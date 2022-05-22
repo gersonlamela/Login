@@ -12,17 +12,16 @@ export function MainRight() {
       password: values.password,
     }).then((response) => {
       alert(response.data.msg);
+      console.log(response);
     });
   };
+
   const validationLogin = yup.object().shape({
     email: yup
       .string()
       .email("Não é um email")
       .required("Este campo é obrigatório"),
-    password: yup
-      .string()
-      .min(8, "A senha deve de ter no minimo 8 caracteres")
-      .required("Este campo é obrigatório"),
+    password: yup.string().required("Este campo é obrigatório"),
   });
   const [passwordType, setPasswordType] = useState("password");
 
@@ -38,7 +37,7 @@ export function MainRight() {
       <div className="flex flex-col w-[300px] md:w-[360px] gap-[30px] max-w-[360px] mt-5">
         <div className="flex flex-col">
           <h1 className="text-dark dark:text-light text-3xl font-medium h-auto">
-            Sign in
+            Login
           </h1>
         </div>
         <div className="flex">
@@ -66,12 +65,8 @@ export function MainRight() {
                     <Field
                       className="input w-full"
                       name="password"
+                      type={passwordType}
                       placeholder="Password"
-                    />
-                    <ErrorMessage
-                      component="span"
-                      name="password"
-                      className="ErrorMessage"
                     />
                   </div>
                   {passwordType === "password" ? (
@@ -95,12 +90,19 @@ export function MainRight() {
                 Forgot password ?
               </p>
               <button
-                /*  disabled={!Formik.isValid} */
-                className="w-full h-[60px] rounded-lg bg-blue shadow shadow-blue text-light mt-[45px] disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full h-[60px] rounded-lg bg-blue shadow shadow-blue text-light mt-[30px] disabled:opacity-60 disabled:cursor-not-allowed"
                 type="submit"
               >
                 Login
               </button>
+              <div className="flex items-center justify-center lg:hidden mt-8 w-full">
+                <p className="text-form">
+                  Ainda não tens conta?
+                  <span className="text-blue">
+                    <a href="/register"> Faz o teu Registo </a>
+                  </span>
+                </p>
+              </div>
               <p className="text-gray flex items-center justify-center my-[45px]">
                 or continue with
               </p>

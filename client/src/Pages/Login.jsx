@@ -7,7 +7,7 @@ export function Login() {
   return (
     <>
       <Navbar />
-      <div className="flex items-center justify-center flex-col lg:flex-row lg:items-start lg:justify-between lg:px-[100px] xl:px-[180px] pb-[2.35rem]">
+      <div className="flex items-center justify-center flex-col lg:flex-row lg:items-start lg:justify-between  lg:px-[100px] xl:px-[180px]">
         <MainLeft />
         <MainRight />
       </div>

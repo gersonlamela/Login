@@ -7,22 +7,20 @@ export function MainLeft() {
       <div className="hidden lg:flex flex-col gap-14">
         <div className="flex flex-col">
           <h1 className="text-dark dark:text-light text-[3.125rem] font-semibold">
-            Sign in to
+            Login
           </h1>
-          <h2 className="text-dark dark:text-light text-4xl font-medium">
-            Lorem Ipsum is simply
+          <h2 className="text-dark dark:text-light text-2xl font-medium">
+            Tem acesso ao nosso site e muito mais...
           </h2>
         </div>
         <div className="flex flex-row text-dark dark:text-light">
           <div className="flex flex-row gap-2">
             <div className="flex flex-col">
-              <p className="text-base font-normal">
-                If you don’t have an account register
-              </p>
+              <p className="text-base font-normal">Se ainda não tens conta</p>
               <p className="text-base font-medium">
-                You can{" "}
+                Tu podes
                 <span className="text-blue">
-                  <a href="/register">Register here!</a>
+                  <a href="/register"> Registar-te aqui!</a>
                 </span>
               </p>
             </div>

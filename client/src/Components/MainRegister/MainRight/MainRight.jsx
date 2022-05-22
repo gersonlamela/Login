@@ -6,6 +6,15 @@ import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
 
 export function MainRight() {
+  const [passwordType, setPasswordType] = useState("password");
+
+  const togglePassword = () => {
+    if (passwordType === "password") {
+      setPasswordType("text");
+      return;
+    }
+    setPasswordType("password");
+  };
   const PasswordRegExp =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
   const phoneRegExp =
@@ -27,6 +36,8 @@ export function MainRight() {
     apelido: yup.string().required("Este campo é obrigatório"),
     telemovel: yup
       .string()
+      .min(9, "O número de telemóvel deve de ter no minimo 9 caracteres")
+      .max(9, "O número de telemóvel deve de ter no maximo 9 caracteres")
       .matches(phoneRegExp, "Número de telemóvel inválido"),
     email: yup
       .string()
@@ -39,7 +50,7 @@ export function MainRight() {
         PasswordRegExp,
         "Deve conter no minimo 8 caracteres, uma maiúsculas, uma minúscula, um número e um personagem de caso especial"
       )
-      .required("No password provided."),
+      .required("Este campo é obrigatório"),
     confirmPassword: yup
       .string()
       .oneOf([yup.ref("password"), null], "As senhas não são iguais")
@@ -56,7 +67,7 @@ export function MainRight() {
       <div className="flex flex-col w-[350px] md:w-[500px] gap-[30px] max-w-[500px] mt-5">
         <div className="flex flex-col">
           <h1 className="text-dark dark:text-light text-3xl font-medium h-auto">
-            Sign Up
+            Registar
           </h1>
         </div>
         <div className="flex">
@@ -95,7 +106,7 @@ export function MainRight() {
                   <Field
                     name="telemovel"
                     className="input w-full"
-                    placeholder="Insira o seu número de telemóvel"
+                    placeholder="Número de telemóvel"
                   />
                   <ErrorMessage
                     name="telemovel"
@@ -116,11 +127,30 @@ export function MainRight() {
                   />
                 </div>
                 <div className="flex flex-col w-[48%]">
-                  <Field
-                    name="password"
-                    className="input w-full"
-                    placeholder="Insira a sua password"
-                  />
+                  <div className="flex w-full items-center justify-end">
+                    {passwordType === "password" ? (
+                      <EyeClosed
+                        size={20}
+                        weight="bold"
+                        className="tooglePassword mb-[0px] mr-[20px]"
+                        onClick={togglePassword}
+                      />
+                    ) : (
+                      <Eye
+                        size={20}
+                        weight="bold"
+                        className="tooglePassword mb-[0px] mr-[20px]"
+                        onClick={togglePassword}
+                      />
+                    )}
+
+                    <Field
+                      name="password"
+                      type={passwordType}
+                      className="input w-full"
+                      placeholder="Insira a sua password"
+                    />
+                  </div>
                   <ErrorMessage
                     name="password"
                     component="span"
@@ -128,11 +158,30 @@ export function MainRight() {
                   />
                 </div>
                 <div className="flex flex-col w-[48%]">
-                  <Field
-                    name="confirmPassword"
-                    className="input w-full"
-                    placeholder="Confirmar Password"
-                  />
+                  <div className="flex w-full items-center justify-end">
+                    {passwordType === "password" ? (
+                      <EyeClosed
+                        size={20}
+                        weight="bold"
+                        className="tooglePassword mb-[0px] mr-[20px]"
+                        onClick={togglePassword}
+                      />
+                    ) : (
+                      <Eye
+                        size={20}
+                        weight="bold"
+                        className="tooglePassword mb-[0px] mr-[20px]"
+                        onClick={togglePassword}
+                      />
+                    )}
+
+                    <Field
+                      name="confirmPassword"
+                      type={passwordType}
+                      className="input w-full"
+                      placeholder="Confirmar Password"
+                    />
+                  </div>
 
                   <ErrorMessage
                     name="confirmPassword"
@@ -140,18 +189,6 @@ export function MainRight() {
                     className="ErrorMessage"
                   />
                 </div>
-                {/* 
-                <div className="flex w-full items-center justify-end">
-                  {passwordType === "password" ? (
-                    <EyeClosed
-                      size={20}
-                      weight="bold"
-                      className="tooglePassword mb-[75px] mr-[20px]"
-                    />
-                  ) : (
-                    <Eye size={20} weight="bold" className="tooglePassword" />
-                  )}
-                </div> */}
               </div>
 
               <button
@@ -160,7 +197,15 @@ export function MainRight() {
               >
                 Login
               </button>
-              <p className="text-gray flex items-center justify-center my-[45px]">
+              <div className="flex items-center justify-center lg:hidden mt-8 w-full">
+                <p className="text-form">
+                  Já tens conta?
+                  <span className="text-blue">
+                    <a href="/"> Faz Login </a>
+                  </span>
+                </p>
+              </div>
+              <p className="text-gray flex items-center justify-center my-[30px]">
                 or continue with
               </p>
               <div className="flex flex-row justify-center gap-[25px]">
