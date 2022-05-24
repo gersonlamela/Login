@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import Axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function MainRight() {
   const [passwordType, setPasswordType] = useState("password");
@@ -27,8 +29,7 @@ export function MainRight() {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      alert(response.data.msg);
-      console.log(response);
+      toast.error(response.data.msg);
     });
   };
   const validationRegister = yup.object().shape({
@@ -190,7 +191,11 @@ export function MainRight() {
                   />
                 </div>
               </div>
-
+              <ToastContainer
+                className=""
+                position={toast.POSITION.TOP_RIGHT}
+                autoClose={2000}
+              />
               <button
                 className="w-full h-[60px] rounded-lg bg-blue shadow shadow-blue text-light mt-[45px]"
                 type="submit"

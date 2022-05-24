@@ -7,6 +7,7 @@ export function Navbar() {
   return (
     <div className="w-full h-[85px] shadow dark:shadow-none px-10 flex items-center flex-1 justify-between  font-semibold text-xl text-dark dark:text-light">
       <p>Your Logo</p>
+
       <div className="darkmode">
         {/* DarkMode */}
         {theme === "dark" ? (

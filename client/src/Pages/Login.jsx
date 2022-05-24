@@ -4,6 +4,8 @@ import { MainRight } from "../Components/MainLogin/MainRight/MainRight";
 import { Navbar } from "../Components/Navbar/Navbar";
 
 export function Login() {
+  document.title = "Login";
+  window.top.document.title;
   return (
     <>
       <Navbar />

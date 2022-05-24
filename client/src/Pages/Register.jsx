@@ -4,6 +4,8 @@ import { MainRight } from "../Components/MainRegister/MainRight/MainRight";
 import { Navbar } from "../Components/Navbar/Navbar";
 
 export function Register() {
+  document.title = "Registar";
+  window.top.document.title;
   return (
     <>
       <Navbar />

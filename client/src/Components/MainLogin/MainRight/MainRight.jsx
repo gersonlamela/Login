@@ -1,9 +1,13 @@
-import { Eye, EyeClosed } from "phosphor-react";
-import { Facebook, Apple, Google } from "../../helper/images";
 import React, { useState } from "react";
+import Axios from "axios";
 import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
-import Axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+
+import { Eye, EyeClosed } from "phosphor-react";
+import { Facebook, Apple, Google } from "../../helper/images";
+
+import "react-toastify/dist/ReactToastify.css";
 
 export function MainRight() {
   const handleClickLogin = (values) => {
@@ -11,8 +15,9 @@ export function MainRight() {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      alert(response.data.msg);
-      console.log(response);
+      localStorage.setItem("user", JSON.stringify(response.data));
+
+      toast.error(response.data.msg);
     });
   };
 
@@ -69,23 +74,31 @@ export function MainRight() {
                       placeholder="Password"
                     />
                   </div>
-                  {passwordType === "password" ? (
-                    <EyeClosed
-                      size={20}
-                      weight="bold"
-                      className="tooglePassword"
-                      onClick={togglePassword}
-                    />
-                  ) : (
-                    <Eye
-                      size={20}
-                      weight="bold"
-                      className="tooglePassword"
-                      onClick={togglePassword}
-                    />
-                  )}
+                  <div className="tooglePassword">
+                    {passwordType === "password" ? (
+                      <EyeClosed
+                        size={20}
+                        weight="bold"
+                        className=""
+                        onClick={togglePassword}
+                      />
+                    ) : (
+                      <Eye
+                        size={20}
+                        weight="bold"
+                        className=""
+                        onClick={togglePassword}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
+              <ToastContainer
+                className=""
+                position={toast.POSITION.TOP_RIGHT}
+                autoClose={2000}
+              />
+
               <p className="text-gray flex items-center justify-end mt-5">
                 Forgot password ?
               </p>
