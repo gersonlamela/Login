@@ -1,13 +1,13 @@
 import React from "react";
-import { Human } from "../../helper/images";
+import { Human } from "../helper/images";
 
-export function MainLeft() {
+export function LoginSlogan() {
   return (
     <>
       <div className="hidden lg:flex flex-col gap-14">
         <div className="flex flex-col">
           <h1 className="text-dark dark:text-light text-[3.125rem] font-semibold">
-            Registar
+            Login
           </h1>
           <h2 className="text-dark dark:text-light text-2xl font-medium">
             Tem acesso ao nosso site e muito mais...
@@ -16,11 +16,11 @@ export function MainLeft() {
         <div className="flex flex-row text-dark dark:text-light">
           <div className="flex flex-row gap-2">
             <div className="flex flex-col">
-              <p className="text-base font-normal">Se já tens conta</p>
-              <p className="text-base">
-                Podes
+              <p className="text-base font-normal">Se ainda não tens conta</p>
+              <p className="text-base font-medium">
+                Tu podes
                 <span className="text-blue">
-                  <a href="../"> fazer o teu Login aqui!</a>
+                  <a href="/register"> Registar-te aqui!</a>
                 </span>
               </p>
             </div>

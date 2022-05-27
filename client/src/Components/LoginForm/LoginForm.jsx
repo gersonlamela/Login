@@ -5,11 +5,11 @@ import { ErrorMessage, Formik, Form, Field } from "formik";
 import { ToastContainer, toast } from "react-toastify";
 
 import { Eye, EyeClosed } from "phosphor-react";
-import { Facebook, Apple, Google } from "../../helper/images";
+import { Facebook, Apple, Google } from "../helper/images";
 
 import "react-toastify/dist/ReactToastify.css";
 
-export function MainRight() {
+export function LoginForm() {
   const handleClickLogin = (values) => {
     Axios.post("http://localhost:3001/login", {
       email: values.email,
@@ -65,33 +65,38 @@ export function MainRight() {
                     className="ErrorMessage"
                   />
                 </div>
-                <div className="flex w-full items-center justify-end">
-                  <div className="flex flex-col w-full">
-                    <Field
-                      className="input w-full"
-                      name="password"
-                      type={passwordType}
-                      placeholder="Password"
-                    />
-                  </div>
+
+                <div className="flex flex-col w-full justify-center items-end">
+                  <Field
+                    className="input w-full"
+                    name="password"
+                    type={passwordType}
+                    placeholder="Password"
+                  />
+
                   <div className="tooglePassword">
                     {passwordType === "password" ? (
                       <EyeClosed
                         size={20}
                         weight="bold"
-                        className=""
+                        className="mr-[20px]"
                         onClick={togglePassword}
                       />
                     ) : (
                       <Eye
                         size={20}
                         weight="bold"
-                        className=""
+                        className="mr-[20px]"
                         onClick={togglePassword}
                       />
                     )}
                   </div>
                 </div>
+                <ErrorMessage
+                  component="span"
+                  name="password"
+                  className="ErrorMessage"
+                />
               </div>
               <ToastContainer
                 className=""

@@ -4,7 +4,7 @@ export const db = mysql.createPool({
   host: "localhost",
   user: "root",
   password: "",
-  database: "banco",
+  database: "loginpage",
 });
 
 db.getConnection((err, connection) => {

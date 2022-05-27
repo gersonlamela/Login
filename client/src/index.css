@@ -4,7 +4,10 @@
 
 @layer base {
   html {
-    @apply font-Poppins;
+    @apply font-Poppins h-full;
+  }
+  body {
+    @apply bg-light dark:bg-dark transition-all;
   }
   .input {
     @apply w-full h-[60px] p-[30px] bg-purpple bg-opacity-30 text-purpple placeholder-purpple rounded;
@@ -15,7 +18,7 @@
   }
 
   .tooglePassword {
-    @apply absolute text-purpple font-bold opacity-100 mr-[30px];
+    @apply absolute text-purpple font-bold opacity-100;
   }
   .ErrorMessage {
     @apply text-red font-medium text-sm mt-2;

@@ -1,5 +1,5 @@
 import { Eye, EyeClosed } from "phosphor-react";
-import { Facebook, Apple, Google } from "../../helper/images";
+import { Facebook, Apple, Google } from "../helper/images";
 import React, { useState } from "react";
 import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
@@ -7,7 +7,7 @@ import Axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export function MainRight() {
+export function RegisterForm() {
   const [passwordType, setPasswordType] = useState("password");
 
   const togglePassword = () => {
@@ -128,29 +128,30 @@ export function MainRight() {
                   />
                 </div>
                 <div className="flex flex-col w-[48%]">
-                  <div className="flex w-full items-center justify-end">
-                    {passwordType === "password" ? (
-                      <EyeClosed
-                        size={20}
-                        weight="bold"
-                        className="tooglePassword mb-[0px] mr-[20px]"
-                        onClick={togglePassword}
-                      />
-                    ) : (
-                      <Eye
-                        size={20}
-                        weight="bold"
-                        className="tooglePassword mb-[0px] mr-[20px]"
-                        onClick={togglePassword}
-                      />
-                    )}
-
+                  <div className="flex flex-col w-full justify-center items-end">
                     <Field
                       name="password"
                       type={passwordType}
                       className="input w-full"
                       placeholder="Insira a sua password"
                     />
+                    <div className="tooglePassword">
+                      {passwordType === "password" ? (
+                        <EyeClosed
+                          size={20}
+                          weight="bold"
+                          className="mr-[10px]"
+                          onClick={togglePassword}
+                        />
+                      ) : (
+                        <Eye
+                          size={20}
+                          weight="bold"
+                          className="mr-[10px]"
+                          onClick={togglePassword}
+                        />
+                      )}
+                    </div>
                   </div>
                   <ErrorMessage
                     name="password"
@@ -159,31 +160,31 @@ export function MainRight() {
                   />
                 </div>
                 <div className="flex flex-col w-[48%]">
-                  <div className="flex w-full items-center justify-end">
-                    {passwordType === "password" ? (
-                      <EyeClosed
-                        size={20}
-                        weight="bold"
-                        className="tooglePassword mb-[0px] mr-[20px]"
-                        onClick={togglePassword}
-                      />
-                    ) : (
-                      <Eye
-                        size={20}
-                        weight="bold"
-                        className="tooglePassword mb-[0px] mr-[20px]"
-                        onClick={togglePassword}
-                      />
-                    )}
-
+                  <div className="flex flex-col w-full justify-center items-end">
                     <Field
                       name="confirmPassword"
                       type={passwordType}
                       className="input w-full"
-                      placeholder="Confirmar Password"
+                      placeholder="Confirme  a sua password"
                     />
+                    <div className="tooglePassword">
+                      {passwordType === "password" ? (
+                        <EyeClosed
+                          size={20}
+                          weight="bold"
+                          className="mr-[10px]"
+                          onClick={togglePassword}
+                        />
+                      ) : (
+                        <Eye
+                          size={20}
+                          weight="bold"
+                          className="mr-[10px]"
+                          onClick={togglePassword}
+                        />
+                      )}
+                    </div>
                   </div>
-
                   <ErrorMessage
                     name="confirmPassword"
                     component="span"
