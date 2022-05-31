@@ -17,10 +17,6 @@ export default {
       }
       //Email existe
       if (result.length > 0) {
-        const nome = result[0].nome;
-        const apelido = result[0].apelido;
-        const telemovel = result[0].telemovel;
-
         const id = result[0].id;
 
         bcrypt.compare(password, result[0].password, (erro, result) => {
@@ -31,17 +27,18 @@ export default {
             console.log(token);
             res.status(200).send({
               accessToken: token,
+              msg: "Logado com sucesso",
             });
 
             db.query(`UPDATE users SET last_login = now() WHERE email = ?`, [
               email,
             ]);
           } else {
-            res.status(200).json({ msg: "A senha está incorreta" });
+            res.status(201).json({ msg: "A senha está incorreta" });
           }
         });
       } else {
-        res.status(200).json({ msg: "Email não registado" });
+        res.status(201).json({ msg: "Email não registado" });
       }
     });
   },
@@ -54,7 +51,7 @@ export default {
 
     db.query("SELECT * FROM users WHERE email = ?", [email], (err, result) => {
       if (err) {
-        res.status(200).json(err);
+        res.status(201).json(err);
       }
       if (result.length == 0) {
         bcrypt.hash(password, saltRounds, (erro, hash) => {
@@ -63,7 +60,7 @@ export default {
             [nome, apelido, telemovel, email, hash],
             (err, response) => {
               if (err) {
-                res.status(200).json(err);
+                res.status(201).json(err);
               }
               /*  res.status(200).json({ msg: "Registado com sucesso" }); */
               res.status(200);
@@ -71,7 +68,7 @@ export default {
           );
         });
       } else {
-        res.status(200).json({ msg: "Usuário já registado" });
+        res.status(201).json({ msg: "Usuário já registado" });
       }
     });
   },

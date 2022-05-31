@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import Axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Axios, { AxiosError } from "axios";
 import * as yup from "yup";
 import { ErrorMessage, Formik, Form, Field } from "formik";
 import { ToastContainer, toast } from "react-toastify";
@@ -10,14 +11,19 @@ import { Facebook, Apple, Google } from "../helper/images";
 import "react-toastify/dist/ReactToastify.css";
 
 export function LoginForm() {
+  let navigate = useNavigate();
   const handleClickLogin = (values) => {
     Axios.post("http://localhost:3001/login", {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      localStorage.setItem("user", JSON.stringify(response.data));
-
-      toast.error(response.data.msg);
+      console.log(AxiosError.response);
+      if (response.status === 200) {
+        localStorage.setItem("user", JSON.stringify(response.data));
+        navigate(`/`);
+      } else {
+        toast.error(response.data.msg);
+      }
     });
   };
 
