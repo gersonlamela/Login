@@ -1,21 +1,18 @@
 import jwt from "jsonwebtoken";
-
 import "dotenv/config";
+function validateToken(req, res, next) {
+  const authHeader = req.header("Authorization");
+  const token = authHeader && authHeader.split(" ")[1];
 
-const verifyToken = (req, res, next) => {
-  const token =
-    req.body.token || req.query.token || req.headers["x-access-token"];
+  console.log(authHeader);
+  if (token == null) return res.sendStatus(401);
 
-  if (!token) {
-    return res.status(403).send("A token is required for authentication");
-  }
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-  } catch (err) {
-    return res.status(401).send("Invalid Token");
-  }
-  return next();
-};
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+    if (err) return res.sendStatus(403);
+    req.tokenData = decoded;
 
-export default verifyToken;
+    next();
+  });
+}
+
+export default validateToken;

@@ -1,7 +1,6 @@
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
-import "dotenv/config";
+import generateAccessToken from "../services/generateAccessToken.js";
 
 import { db } from "../config/db.js";
 const saltRounds = 10;
@@ -21,13 +20,9 @@ export default {
 
         bcrypt.compare(password, result[0].password, (erro, result) => {
           if (result) {
-            var token = jwt.sign({ id }, process.env.JWT_SECRET, {
-              expiresIn: 86400, // expires in 5min
-            });
-            console.log(token);
+            const token = generateAccessToken(id);
             res.status(200).send({
-              accessToken: token,
-              msg: "Logado com sucesso",
+              token: `Bearer ${token}`,
             });
 
             db.query(`UPDATE users SET last_login = now() WHERE email = ?`, [
@@ -74,6 +69,7 @@ export default {
   },
 
   async welcome(req, res) {
+    console.log(req.userId);
     res.status(200).send("Welcome 🙌 ");
     console.log("Welcome");
   },

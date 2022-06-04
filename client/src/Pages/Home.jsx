@@ -1,22 +1,25 @@
+import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { HomeMain } from "../Components/HomeMain/MainHome";
+
+import { NavbarHome } from "../Components/HomeNavbar/NavbarHome";
 
 export function Home() {
+  const api = axios.create({
+    baseURL: "http://localhost:3001" /* metes aqui o url da tua api */,
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
+      "Content-Type": "application/json",
+    },
+  });
+
+  api.get("/welcome").then((res) => {
+    console.log(res);
+  });
   return (
     <>
-      <div className="flex gap-5">
-        <h1>PÁGINA HOME</h1>
-        <p>Olá "NOME DO UTILIZADOR"</p>
-        <Link to="./login">
-          <button className="hover:text-red">Login</button>
-        </Link>
-        <Link to="./register">
-          <button className="hover:text-red">Register</button>
-        </Link>
-        <Link to="">
-          <button className="hover:text-red">Logout</button>
-        </Link>
-      </div>
+      <NavbarHome />
+      <HomeMain />
     </>
   );
 }
