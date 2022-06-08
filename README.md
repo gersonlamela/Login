@@ -1,8 +1,8 @@
 <div  align="center"  id="top">
 
-<img src="../client/public/assets/images/login_darkMode.png"  alt="DarkMode login Page" />
+<img src="./client/public/assets/images/login_darkMode.png"  alt="DarkMode login Page" />
 
-<img src="../client/public/assets/images/login_lightMode.png"  alt="LightMode login Page" />
+<img src="./client/public/assets/images/login_lightMode.png"  alt="LightMode login Page" />
 
 
   
