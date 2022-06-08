@@ -17,7 +17,6 @@ export function LoginForm() {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      console.log(AxiosError.response);
       if (response.status === 200) {
         localStorage.setItem("accessToken", response.data.token);
         navigate(`/`);

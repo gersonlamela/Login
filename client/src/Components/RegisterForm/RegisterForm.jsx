@@ -29,7 +29,11 @@ export function RegisterForm() {
       email: values.email,
       password: values.password,
     }).then((response) => {
-      toast.error(response.data.msg);
+      if (response.status === 200) {
+        toast.success(response.data.msg);
+      } else {
+        toast.error(response.data.msg);
+      }
     });
   };
   const validationRegister = yup.object().shape({
@@ -201,7 +205,7 @@ export function RegisterForm() {
                 className="w-full h-[60px] rounded-lg bg-blue shadow shadow-blue text-light mt-[45px]"
                 type="submit"
               >
-                Login
+                Registar
               </button>
               <div className="flex items-center justify-center lg:hidden mt-8 w-full">
                 <p className="text-form">

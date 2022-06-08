@@ -6,6 +6,8 @@ import { Navbar } from "../Components/Navbar/Navbar";
 import { isAuthenticated } from "../service/isAuthenticated";
 
 export function Home() {
+  document.title = "Home Page";
+  window.top.document.title;
   const navigate = useNavigate();
 
   useEffect(() => {
