@@ -59,7 +59,7 @@ export default {
               if (err) {
                 res.status(201).json(err);
               }
-              /*  res.status(200).json({ msg: "Registado com sucesso" }); */
+              res.status(200).json({ msg: "Registado com sucesso" });
               res.status(200);
             }
           );
@@ -71,8 +71,6 @@ export default {
   },
 
   async welcome(req, res) {
-    console.log(req.userId);
     res.status(200).send("Welcome 🙌 ");
-    console.log("Welcome");
   },
 };
