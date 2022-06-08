@@ -1,24 +1,19 @@
-import axios from "axios";
-import React from "react";
-import { HomeMain } from "../Components/HomeMain/MainHome";
+import React, { useEffect } from "react";
 
-import { NavbarHome } from "../Components/HomeNavbar/NavbarHome";
+import { useNavigate } from "react-router-dom";
+import { HomeMain } from "../Components/HomeMain/MainHome";
+import { Navbar } from "../Components/Navbar/Navbar";
+import { isAuthenticated } from "../service/isAuthenticated";
 
 export function Home() {
-  const api = axios.create({
-    baseURL: "http://localhost:3001" /* metes aqui o url da tua api */,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("accessToken")}`,
-      "Content-Type": "application/json",
-    },
-  });
+  const navigate = useNavigate();
 
-  api.get("/welcome").then((res) => {
-    console.log(res);
-  });
+  useEffect(() => {
+    isAuthenticated() ? true : navigate("/login");
+  }, [navigate]);
   return (
     <>
-      <NavbarHome />
+      <Navbar />
       <HomeMain />
     </>
   );

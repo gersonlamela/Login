@@ -19,7 +19,7 @@ export function LoginForm() {
     }).then((response) => {
       console.log(AxiosError.response);
       if (response.status === 200) {
-        localStorage.setItem("accessToken", JSON.stringify(response.data));
+        localStorage.setItem("accessToken", response.data.token);
         navigate(`/`);
       } else {
         toast.error(response.data.msg);

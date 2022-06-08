@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 
-import generateAccessToken from "../services/generateAccessToken.js";
+import generateToken from "../services/generateToken.js";
 
 import { db } from "../config/db.js";
 const saltRounds = 10;
@@ -17,12 +17,14 @@ export default {
       //Email existe
       if (result.length > 0) {
         const id = result[0].id;
-
+        const user = result[0];
         bcrypt.compare(password, result[0].password, (erro, result) => {
           if (result) {
-            const token = generateAccessToken(id);
+            user.password = undefined;
+            const token = generateToken({ id });
             res.status(200).send({
-              token: `Bearer ${token}`,
+              token,
+              user,
             });
 
             db.query(`UPDATE users SET last_login = now() WHERE email = ?`, [
