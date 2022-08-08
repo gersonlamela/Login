@@ -45,7 +45,7 @@
 
 	Projeto desenvolvido
   
-Sistem de login e de registro utilizando token JWT , utilizando 
+Sistema de login e de registro utilizando token JWT , utilizando 
 
 
 
